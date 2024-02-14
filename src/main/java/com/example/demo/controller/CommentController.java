@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,13 +33,17 @@ public class CommentController {
 	
 	@ResponseBody
 	@PostMapping("/register")
-	public HashMap<String,Boolean> register(CommentDTO dto) {
+	public HashMap<String,Boolean> register(CommentDTO dto, Principal principal) {
+		
+		
 		//맵 객체 생성 젝슨이 제이슨 형태로 반환
 		HashMap<String, Boolean> map = new HashMap<>();
 		
-		// 임시 아이디
-		String id = "user1";
+		String id = principal.getName();
 		dto.setWriter(id);
+		
+		
+		
 		// 새로운 댓글 등록
 		service.register(dto);
 		// 처리결과 반환

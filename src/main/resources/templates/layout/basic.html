@@ -32,8 +32,8 @@
 <!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>-->
 <!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>-->
 <!--            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>-->
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/member/list}">회원관리</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/board/list}">게시물관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/member/list}">회원관리</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')" th:href="@{/board/list}">게시물관리</a>
         </div>
     </div>
     <!-- Page content wrapper-->
@@ -45,8 +45,10 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a class="nav-link" href="@{/}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Logout">Logout</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>-->
+                        <!-- 로그아웃 버튼 추가 -->
+                        <li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

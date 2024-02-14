@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -35,7 +37,11 @@ public class BoardController {
 	}
 
 	@PostMapping("/register")
-	public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
+	public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes, Principal principal ) {
+		
+		String id = principal.getName();
+		dto.setWriter(id);
+		
 		int no = service.register(dto);
 		redirectAttributes.addFlashAttribute("msg", no);
 		return "redirect:/board/list";
